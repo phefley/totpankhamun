@@ -130,7 +130,6 @@ func main() {
 	flag.IntVar(&roundsFlag, "rounds", 1, "How many rounds are required for success?")
 	flag.IntVar(&tripwiresFlag, "tripwires", 0, "How many tripwires should be deployed?")
 	flag.StringVar(&actionCommandFlag, "action", "", "The command which will be executed when successful. Not the args.")
-	flag.StringVar(&actionCommandArgsFlag, "actionargs", "", "The command arguments. The template {CALLER} can be used to obtain the IP address of the successful caller.")
 	flag.Parse()
 
 	if baseFlag < 1000 || baseFlag > 64000 {
@@ -280,9 +279,9 @@ func main() {
 						fmt.Println("[++]", secondCaller, "is the overall winner!")
 					}
 					if actionCommandFlag != "" {
-						actionCommandArgsFlag = strings.Replace(actionCommandArgsFlag, "{CALLER}", secondCaller, -1)
-						fmt.Println("[+] Will execute:", actionCommandFlag, actionCommandArgsFlag)
-						cmd := exec.Command(actionCommandFlag, actionCommandArgsFlag)
+						actionCommandFlag = strings.Replace(actionCommandFlag, "{CALLER}", secondCaller, -1)
+						fmt.Println("[+] Will execute:", actionCommandFlag)
+						cmd := exec.Command("bash", "-c", actionCommandFlag)
 						if err := cmd.Start(); err != nil {
 							log.Fatal(err)
 						}
