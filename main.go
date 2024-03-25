@@ -116,7 +116,7 @@ func haskey(mapToTest map[string]int, str string) bool {
 func main() {
 
 	var baseFlag, roundsFlag, tripwiresFlag int
-	var actionCommandFlag, actionCommandArgsFlag, keyFileFlag, qrPngFileFlag string
+	var actionCommandFlag, keyFileFlag, qrPngFileFlag string
 	var generateKeyFlag bool
 	var keyPtr *otp.Key
 	var keyUrl string
