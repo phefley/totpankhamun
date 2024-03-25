@@ -1,4 +1,4 @@
-module totpankhamun
+module github.com/phefley/totpankhamun
 
 go 1.20
 
